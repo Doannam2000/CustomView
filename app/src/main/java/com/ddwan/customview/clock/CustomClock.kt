@@ -13,6 +13,7 @@ import java.util.*
 class CustomClock @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
 ) : View(context, attrs, defStyleAttr) {
+
     private var mPadding = 0
     private var numeralSpacing = 0
     private var handTruncation = 0
@@ -25,7 +26,6 @@ class CustomClock @JvmOverloads constructor(
     private var mHour = 0
     private var mMinute = 0
     private var isInit = false
-
 
     override fun onDraw(canvas: Canvas) {
         if(!isInit)
@@ -56,6 +56,7 @@ class CustomClock @JvmOverloads constructor(
             paint.color = Color.YELLOW
         val handRadius =
             if (isHour) radius - handTruncation - hourHandTruncation else radius - handTruncation
+
         canvas.drawLine((width / 2).toFloat(), (height / 2).toFloat(),
             (width / 2 + Math.cos(angle) * handRadius).toFloat(),
             (height / 2 + Math.sin(angle) * handRadius).toFloat(),
@@ -73,7 +74,7 @@ class CustomClock @JvmOverloads constructor(
         }
         hour += mHour
         hour = if (hour > 12) hour - 12 else hour
-        drawHand(canvas, (hour + c.get(Calendar.MINUTE) / 60) * 5f, isHour = true, isSecond = false)
+        drawHand(canvas, (hour + c.get(Calendar.MINUTE) / 60) *5f, isHour = true, isSecond = false)
         drawHand(canvas, minute, isHour = false, isSecond = false)
         drawHand(canvas, c.get(Calendar.SECOND).toFloat(), isHour = false, isSecond = true)
     }

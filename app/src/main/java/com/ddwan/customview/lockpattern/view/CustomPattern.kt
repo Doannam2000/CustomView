@@ -185,6 +185,7 @@ class CustomPattern @JvmOverloads constructor(
     private fun checkPassword() {
         if (password.size < 4) {
             isCorrect = false
+            password.clear()
             return
         }
         for (i in password.indices) {
@@ -197,6 +198,7 @@ class CustomPattern @JvmOverloads constructor(
         password.clear()
         isCorrect = true
     }
+
 
 
     private fun drawPoint(canvas: Canvas) {

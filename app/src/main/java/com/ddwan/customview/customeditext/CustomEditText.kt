@@ -25,7 +25,6 @@ class CustomEditText @JvmOverloads constructor(
 
     private var editText: EditText
     private var displayColor: View
-    var text = ""
 
     init {
         val typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CustomEditText)
@@ -105,17 +104,9 @@ class CustomEditText @JvmOverloads constructor(
                 dialog.dismiss()
             }
         }
-        editText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                text = p0.toString()
-            }
-        })
+    }
+    fun getText():String{
+        return editText.text.toString()
     }
 }
 
