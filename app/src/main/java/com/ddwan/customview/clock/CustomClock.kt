@@ -104,8 +104,10 @@ class CustomClock @JvmOverloads constructor(
         canvas.drawCircle((width / 2).toFloat(),
             (height / 2).toFloat(), (radius + mPadding - 10).toFloat(), paint)
     }
+
     fun setTime(hour:Int,minute:Int){
         mHour = hour
         mMinute = minute
     }
+
 }

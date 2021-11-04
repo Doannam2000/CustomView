@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".lockpattern.view.LockPattern">
     <com.ddwan.customview.customeditext.CustomEditText
-
+        app:customEditText_Color="@color/purple_500"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <com.ddwan.customview.lockpattern.view.CustomPattern

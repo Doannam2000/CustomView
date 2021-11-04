@@ -16,9 +16,9 @@ class CustomPattern @JvmOverloads constructor(
     private var mess = arrayOf("Mật khẩu không đúng",
         "Thành công rồi nè !",
         "Nhập mật khẩu mới !",
-        "   Tạo thành công !",
-        "  Yêu cầu 4 kí tự",
-    "  Nhập mật khẩu  !")
+        "Tạo thành công !",
+        "Yêu cầu 4 kí tự trở lên",
+        "Nhập mật khẩu !")
     private var point = ArrayList<Point>()
     private var password = ArrayList<Int>()
     private var fontSize = 0
@@ -40,23 +40,25 @@ class CustomPattern @JvmOverloads constructor(
             init()
             paint.textSize = fontSize.toFloat()
             paint.color = Color.BLUE
+            paint.textAlign = Paint.Align.CENTER
             if (isFirstTime) {
-                canvas.drawText(mess[2], width / 4f + 50, (mPadding + 100) / 2, paint)
-            }else {
-                canvas.drawText(mess[5], width / 4f + 50, (mPadding + 100) / 2, paint)
+                canvas.drawText(mess[2], width / 2f, (mPadding + 100) / 2, paint)
+            } else {
+                canvas.drawText(mess[5], width / 2f, (mPadding + 100) / 2, paint)
             }
         }
         drawPoint(canvas)
         drawPoints(canvas)
         if (isFirstTime) {
             paint.textSize = fontSize.toFloat()
+            paint.textAlign = Paint.Align.CENTER
             if (isCheck) {
                 if (isCorrect) {
-                    canvas.drawText(mess[3], width / 4f + 50, (mPadding + 100) / 2, paint)
+                    canvas.drawText(mess[3], width / 2f, (mPadding + 100) / 2, paint)
                     isFirstTime = false
                     shared.edit().putBoolean("isFirstTime", false).apply()
                 } else {
-                    canvas.drawText(mess[4], width / 4f + 50, (mPadding + 100) / 2, paint)
+                    canvas.drawText(mess[4], width / 2f, (mPadding + 100) / 2, paint)
                 }
             }
             isCheck = false
@@ -64,9 +66,9 @@ class CustomPattern @JvmOverloads constructor(
             if (isCheck) {
                 paint.textSize = fontSize.toFloat()
                 if (isCorrect) {
-                    canvas.drawText(mess[1], width / 4f + 50, (mPadding + 100) / 2, paint)
+                    canvas.drawText(mess[1], width / 2f, (mPadding + 100) / 2, paint)
                 } else {
-                    canvas.drawText(mess[0], width / 4f + 50, (mPadding + 100) / 2, paint)
+                    canvas.drawText(mess[0], width / 2f, (mPadding + 100) / 2, paint)
                 }
                 isCheck = false
             }
@@ -151,7 +153,7 @@ class CustomPattern @JvmOverloads constructor(
             }
             MotionEvent.ACTION_UP -> {
                 startPoint = null
-                startPoint = null
+                endPoint = null
                 isDrawing = false
                 isCheck = true
                 if (!isFirstTime)
@@ -181,7 +183,7 @@ class CustomPattern @JvmOverloads constructor(
     }
 
     private fun checkPassword() {
-        if(password.size <4) {
+        if (password.size < 4) {
             isCorrect = false
             return
         }
@@ -200,7 +202,6 @@ class CustomPattern @JvmOverloads constructor(
     private fun drawPoint(canvas: Canvas) {
         paint.color = Color.BLUE
         paint.style = Paint.Style.FILL
-
         // draw 3 point top
         canvas.drawCircle(mPadding, mPadding + 100, 13f, paint)
         canvas.drawCircle(width / 2f, mPadding + 100, 13f, paint)
@@ -214,6 +215,4 @@ class CustomPattern @JvmOverloads constructor(
         canvas.drawCircle(width / 2f, height - mPadding, 13f, paint)
         canvas.drawCircle(width - mPadding, height - mPadding, 13f, paint)
     }
-
-
 }
