@@ -10,6 +10,7 @@ class DemoAnimationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo_animation)
+        supportActionBar?.hide()
         btnBlink.setOnClickListener {
             val animation = AnimationUtils.loadAnimation(this,R.anim.blink_animation)
             imageView.startAnimation(animation)

@@ -13,6 +13,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        supportActionBar?.hide()
         btnClock.setOnClickListener {
             startActivity(Intent(this,MainActivity::class.java))
         }

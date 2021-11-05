@@ -9,13 +9,15 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    var hour = 0
-    var minute = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.hide()
         setTime.setOnClickListener {
+            var hour = 0
+            var minute = 0
             val timePicker = TimePickerDialog(
                 this,
                 TimePickerDialog.THEME_HOLO_DARK, { _, i, i2 ->
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                     hour = i - calendar.get(Calendar.HOUR_OF_DAY)
                     minute = i2 - calendar.get(Calendar.MINUTE)
                     customClock.setTime(hour, minute)
-                }, 12, 0, true
+                }, 12, 0, false
             )
             timePicker.updateTime(hour, minute)
             timePicker.show()

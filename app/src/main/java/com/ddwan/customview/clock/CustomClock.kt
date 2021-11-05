@@ -85,7 +85,7 @@ class CustomClock @JvmOverloads constructor(
         }
         hour += mHour
         hour = if (hour > 12) hour - 12 else hour
-        drawHand(canvas, (hour + c.get(Calendar.MINUTE) / 60) *5f, isHour = true, isSecond = false)
+        drawHand(canvas, (hour + minute / 60) *5f, isHour = true, isSecond = false)
         drawHand(canvas, minute, isHour = false, isSecond = false)
         drawHand(canvas, c.get(Calendar.SECOND).toFloat(), isHour = false, isSecond = true)
     }
