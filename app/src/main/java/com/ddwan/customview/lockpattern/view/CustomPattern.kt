@@ -36,8 +36,11 @@ class CustomPattern @JvmOverloads constructor(
     private var shared = context.getSharedPreferences("PASSWORD", MODE_PRIVATE)
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        var widthMeasureSpec = MeasureSpec.getSize(widthMeasureSpec)
-        setMeasuredDimension(widthMeasureSpec, 400.dp)
+        val widthMeasure = MeasureSpec.getSize(widthMeasureSpec)
+        var heightMeasure = MeasureSpec.getSize(widthMeasureSpec)
+        if(heightMeasure<400.dp)
+            heightMeasure = 400.dp
+        setMeasuredDimension(widthMeasure, heightMeasure)
     }
 
     override fun onDraw(canvas: Canvas) {
