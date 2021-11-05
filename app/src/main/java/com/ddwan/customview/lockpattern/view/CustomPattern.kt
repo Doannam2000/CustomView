@@ -193,12 +193,12 @@ class CustomPattern @JvmOverloads constructor(
     }
 
     private fun checkPassword() {
-        if (password.size < 4) {
+        if (password.size < 4 || listPass.size != password.size) {
             isCorrect = false
             password.clear()
             return
         }
-        for (i in password.indices) {
+        for (i in listPass.indices) {
             if (password[i] != listPass[i]) {
                 isCorrect = false
                 password.clear()
