@@ -2,6 +2,7 @@ package com.ddwan.customview.lockpattern.view
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.res.Resources
 import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
@@ -34,6 +35,10 @@ class CustomPattern @JvmOverloads constructor(
     private var listPass = ArrayList<Int>()
     private var shared = context.getSharedPreferences("PASSWORD", MODE_PRIVATE)
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        var widthMeasureSpec = MeasureSpec.getSize(widthMeasureSpec)
+        setMeasuredDimension(widthMeasureSpec, 400.dp)
+    }
 
     override fun onDraw(canvas: Canvas) {
         if (!isInit) {
@@ -200,6 +205,8 @@ class CustomPattern @JvmOverloads constructor(
     }
 
 
+    val Int.dp: Int
+        get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
 
     private fun drawPoint(canvas: Canvas) {
         paint.color = Color.BLUE

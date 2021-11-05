@@ -1,6 +1,7 @@
 package com.ddwan.customview.clock
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -37,6 +38,16 @@ class CustomClock @JvmOverloads constructor(
         drawHands(canvas)
         postInvalidateDelayed(500)
         invalidate()
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        var widthMeasure = MeasureSpec.getSize(widthMeasureSpec)
+        var heightMeasure = MeasureSpec.getSize(heightMeasureSpec)
+        if(widthMeasure<100.dp)
+            widthMeasure = 100.dp
+        if(heightMeasure < 100.dp)
+            heightMeasure = 100.dp
+        setMeasuredDimension(widthMeasure,heightMeasure)
     }
 
     private fun init(){
@@ -105,6 +116,9 @@ class CustomClock @JvmOverloads constructor(
         canvas.drawCircle((width / 2).toFloat(),
             (height / 2).toFloat(), (radius + mPadding - 10).toFloat(), paint)
     }
+
+    val Int.dp: Int
+        get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
 
     fun setTime(hour:Int,minute:Int){
         mHour = hour
