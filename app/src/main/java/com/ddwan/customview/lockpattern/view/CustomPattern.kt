@@ -107,7 +107,7 @@ class CustomPattern @JvmOverloads constructor(
         val array = ArrayList<Int>()
         val size = shared.getInt("size", 0)
 
-        for (i in 0..size)
+        for (i in 0 until size)
             array.add(shared.getInt("key$i", 0))
         Log.d("size", array.size.toString())
         listPass = array
