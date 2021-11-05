@@ -36,8 +36,10 @@ class CustomPattern @JvmOverloads constructor(
     private var shared = context.getSharedPreferences("PASSWORD", MODE_PRIVATE)
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val widthMeasure = MeasureSpec.getSize(widthMeasureSpec)
+        var widthMeasure = MeasureSpec.getSize(widthMeasureSpec)
         var heightMeasure = MeasureSpec.getSize(widthMeasureSpec)
+        if(widthMeasure<350.dp)
+            widthMeasure = 350.dp
         if(heightMeasure<400.dp)
             heightMeasure = 400.dp
         setMeasuredDimension(widthMeasure, heightMeasure)
@@ -214,17 +216,21 @@ class CustomPattern @JvmOverloads constructor(
     private fun drawPoint(canvas: Canvas) {
         paint.color = Color.BLUE
         paint.style = Paint.Style.FILL
-        // draw 3 point top
-        canvas.drawCircle(mPadding, mPadding + 100, 13f, paint)
-        canvas.drawCircle(width / 2f, mPadding + 100, 13f, paint)
-        canvas.drawCircle(width - mPadding, mPadding + 100, 13f, paint)
-        // draw 3 point middle
-        canvas.drawCircle(mPadding, height / 2f + 50, 13f, paint)
-        canvas.drawCircle(width / 2f, height / 2f + 50, 13f, paint)
-        canvas.drawCircle(width - mPadding, height / 2f + 50, 13f, paint)
-        // draw 3 point bottom
-        canvas.drawCircle(mPadding, height - mPadding, 13f, paint)
-        canvas.drawCircle(width / 2f, height - mPadding, 13f, paint)
-        canvas.drawCircle(width - mPadding, height - mPadding, 13f, paint)
+
+        point.forEach { canvas.drawCircle(it.x.toFloat(), it.y.toFloat(), 13f, paint) }
+
+//        // draw 3 point top
+//        canvas.drawCircle(mPadding, mPadding + 100, 13f, paint)
+//        canvas.drawCircle(width / 2f, mPadding + 100, 13f, paint)
+//        canvas.drawCircle(width - mPadding, mPadding + 100, 13f, paint)
+//        // draw 3 point middle
+//        canvas.drawCircle(mPadding, height / 2f + 50, 13f, paint)
+//        canvas.drawCircle(width / 2f, height / 2f + 50, 13f, paint)
+//        canvas.drawCircle(width - mPadding, height / 2f + 50, 13f, paint)
+//        // draw 3 point bottom
+//        canvas.drawCircle(mPadding, height - mPadding, 13f, paint)
+//        canvas.drawCircle(width / 2f, height - mPadding, 13f, paint)
+//        canvas.drawCircle(width - mPadding, height - mPadding, 13f, paint)
+
     }
 }
